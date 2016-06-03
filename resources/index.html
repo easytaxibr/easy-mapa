@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<style type="text/css">
+#gmap_canvas img {
+  max-width:none!important;background:none!important
+}
+</style>
+</head>
+
+<body>
+  <div style="overflow:hidden;height:680px;width:100%;">
+    <div id="map" style="height:100%;width:100%;"></div>
+  </div>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script type="text/javascript">
+
+  var map;
+  var uri = "/positions"
+
+  function loadPositions() {
+    var xmlhttp;
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+           if(xmlhttp.status == 200){
+               // console.log(xmlhttp.responseText);
+               arr = JSON.parse(xmlhttp.responseText);
+               addMarkers(arr['positions']);
+           }
+           else {
+               alert('something else other than 200 was returned')
+           }
+        }
+    };
+    xmlhttp.open("GET", uri, true);
+    xmlhttp.send();
+  }
+
+  function addMarkers (arr) {
+    for(var i in arr) {
+      new google.maps.Marker({map: map,position: new google.maps.LatLng(arr[i]['lat'], arr[i]['lon'])});
+    }
+  }
+
+  function init_map() {
+    var latlng = new google.maps.LatLng(4.649900, -74.090800);
+    var myOptions = {
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoom: 12,
+    };
+    map = new google.maps.Map(document.getElementById('map'), myOptions);
+    loadPositions(this);
+  }
+  google.maps.event.addDomListener(window, 'load', init_map);
+</script>
+</body>
+</html>

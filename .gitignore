@@ -1,0 +1,14 @@
+/target
+/classes
+/checkouts
+pom.xml
+pom.xml.asc
+*.class
+/.lein-*
+/.nrepl-port
+clojure.iws
+clojure.ipr
+nbproject/private/
+maven-classpath
+maven-classpath.properties
+*.swp
