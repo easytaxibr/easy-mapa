@@ -33,7 +33,6 @@
   (let [lst (generate-positions)
         pos (clojure.string/join "," lst)
         body (format "{\"positions\": [%s]}" pos)]
-    (println lst)
     {:status 200
      :headers {"Content-Type" "application/json"}
      :body body}))
