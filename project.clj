@@ -1,5 +1,5 @@
 (defproject clj-map-position "1.0.0"
-  :description ""
+  :description "Easy Mapa"
   :url ""
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [compojure "1.1.1"]

@@ -1,3 +1,3 @@
-# Clj-map-positions
+# Easy Mapa
 
-### Driver prositions from an api rest
+showing random driver positions from a webservice, can be used as a mock server
