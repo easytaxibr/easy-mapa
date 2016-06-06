@@ -2,13 +2,11 @@
   (:require [clojure.data.json :as json]
             [clojure.string :as string]))
 
-(def max-elements 50)
+(def max-elements 60)
 (def pi (. Math PI))
-(def rad (/ 20 30))
+(def rad (/ 20 40))
 
-(def center (hash-map :lat 4.71 :long -73.96))
-
-(def json-m (json/read-json "{\"taxis\": {}}"))
+(def center (hash-map :lat -23.54 :long -46.53))
 
 (defn transform-coord [u v]
   (let [t (* 2 pi v)
@@ -30,8 +28,7 @@
                     (- (center :long) (second i)))))))
 
 (defn get-random-positions []
-  (let [lst (generate-positions)
-        pos (clojure.string/join "," lst)
+  (let [pos (clojure.string/join "," (generate-positions))
         body (format "{\"positions\": [%s]}" pos)]
     {:status 200
      :headers {"Content-Type" "application/json"}
