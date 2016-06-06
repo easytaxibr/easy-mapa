@@ -1,11 +1,11 @@
-(ns easytaxi_api.handler_test
+(ns easytaxi.handler_test
   (:require [clojure.test :refer :all]
             [clojure.data.json :as json]
             [ring.mock.request :as mock]
             [com.easytaxi.api.handler :refer :all]
             [com.easytaxi.api.positions :refer :all]))
 
-(deftest test-app
+(deftest test-app-route
   (testing "Get main route"
     (let [response (app (mock/request :get "/"))]
       (is (= (:status response) 200))
