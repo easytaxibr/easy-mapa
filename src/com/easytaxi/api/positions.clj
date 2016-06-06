@@ -18,17 +18,17 @@
 (defn make-pairs []
   (transform-coord (* 0.1 (rand)) (* 0.1 (rand))))
 
-(defn generate-positions []
-  (let [m max-elements 
-        pattern "{\"lat\": %s, \"lon\": %s}"]
+(defn generate-json-str [m]
+  (let [pattern "{\"lat\": %s, \"lon\": %s}"]
     (into '()
           (for [i (take m (repeatedly #(make-pairs)))]
             (format pattern
                     (- (center :lat) (first i))
                     (- (center :long) (second i)))))))
 
-(defn get-random-positions []
-  (let [pos (clojure.string/join "," (generate-positions))
+(defn get-random-positions [& [cant]]
+  (let [cant (or cant max-elements)
+        pos (clojure.string/join "," (generate-json-str cant))
         body (format "{\"positions\": [%s]}" pos)]
     {:status 200
      :headers {"Content-Type" "application/json"}
