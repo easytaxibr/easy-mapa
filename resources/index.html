@@ -45,11 +45,11 @@
   }
 
   function init_map() {
-    var latlng = new google.maps.LatLng(4.649900, -74.090800);
+    var latlng = new google.maps.LatLng(-23.565354,-46.632637);
     var myOptions = {
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      zoom: 12,
+      zoom: 13,
     };
     map = new google.maps.Map(document.getElementById('map'), myOptions);
     loadPositions(this);
