@@ -6,6 +6,8 @@
             [ring.middleware.session :refer :all]
             [ring.middleware.nested-params :refer :all])
   (:use com.easytaxi.api.positions
+        ring.middleware.resource
+        ring.middleware.file
         [ring.middleware.params         :only [wrap-params]]
         [ring.middleware.keyword-params :only [wrap-keyword-params]]
         [ring.middleware.session.cookie :only [cookie-store]]))
@@ -20,7 +22,5 @@
   (not-found "<b>Page not found</b>"))
 
 (def app (-> app-routes
-              wrap-keyword-params
-              wrap-nested-params
-              wrap-params))
+             (wrap-resource "public")))
 

@@ -18,6 +18,7 @@
 
   var map;
   var uri = "/positions"
+  var icon_base = '/images/marker_available.png';
 
   function loadPositions() {
     var xmlhttp;
@@ -40,7 +41,7 @@
 
   function addMarkers (arr) {
     for(var i in arr) {
-      new google.maps.Marker({map: map,position: new google.maps.LatLng(arr[i]['lat'], arr[i]['lon'])});
+      new google.maps.Marker({map: map, position: new google.maps.LatLng(arr[i]['lat'], arr[i]['lon']), icon: icon_base});
     }
   }
 
